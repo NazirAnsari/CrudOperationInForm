@@ -29,12 +29,26 @@ res.sendFile(path.join(__dirname,"..",".." ,'/Frontend/index.html'));
 //     return seviceFetchData();
 // }
 
+// before promises
+// const fetchData=(req,res)=>{
+//     const result = seviceFetchData(function(err,result){
+//         return res.send(result);
+//     });
+//     return result;
+// }
+
+
+//using Promises
 const fetchData=(req,res)=>{
-    const result = seviceFetchData(function(err,result){
-        return res.send(result);
-    });
-    return result;
-}
+    const result = seviceFetchData();
+    
+        result.then((data)=>{
+            console.log(data);
+        return res.send(data);
+        })
+        return result;
+    }
+   
 
 const insertData=(req,res)=>{
     const newUser=req.body;

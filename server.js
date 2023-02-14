@@ -5,7 +5,7 @@ const router = require("./Backend/router/router.js");
 const path = require("path");
 var bodyParser = require("body-parser");
 
-// for non blocking calls
+// for non blocking 3rd party calls
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');

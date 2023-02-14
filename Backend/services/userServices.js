@@ -1,23 +1,3 @@
-//query define chlani nhi h
-//calculation & jo db se data aaya h // structural / jo db se data aa rha 
-
-//query define in variable
-
-
-// repos k andr data aaya or query aayi 
-
-// connection db .js 
-
-//same file mai function use krna hai to underscore use kro 
-//agr export krni hai to not use underscore
-
-// module.exports={
-//     a,b,c
-// }
-// abc=require();
-
-
-
 // const repo=require("../repository/userdb.js");
 
 const {fetchData,insertData,deleteData,updateData} =require("../repository/userdb.js");
@@ -28,16 +8,38 @@ const {fetchData,insertData,deleteData,updateData} =require("../repository/userd
 //     return fetchData(sqlQuery);
 // }
 
-const seviceFetchData= ( cb) =>{
+// const seviceFetchData= (cb) =>{
+//         const sqlQuery='SELECT *from iwell_form';
+//         // return repo.fetchDataf(sqlQuery);
+//         // return fetchData(sqlQuery);
+//         const result= fetchData(sqlQuery,(err,res)=>{
+//             // console.log(res);
+//             cb(null,res)
+//             return res;
+//         })
+//     }
+
+
+const seviceFetchData= () =>{
+   
+    // return repo.fetchDataf(sqlQuery);
+    // return fetchData(sqlQuery);
+
+    return new Promise((resolve)=>{
         const sqlQuery='SELECT *from iwell_form';
-        // return repo.fetchDataf(sqlQuery);
-        // return fetchData(sqlQuery);
-        const result= fetchData(sqlQuery,(err,res)=>{
-            // console.log(res);
-            cb(null,res)
-            return res;
-        })
-    }
+    const result= fetchData(sqlQuery);
+        // console.log(res);
+       result.then((data)=>{
+        // console.log(data);
+          resolve(data);
+       })
+    })
+
+}
+
+
+
+
 
 const serviceInsertData = (newUser) =>{
     console.log("serviceInsertDATA");

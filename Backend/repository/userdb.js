@@ -1,4 +1,4 @@
-const conn=require("../connection/db.js");
+const conn = require("../connection/db.js");
 
 // const fetchData=(sql)=>{
 //   return  conn.query(sql,(err,result)=>{
@@ -11,56 +11,75 @@ const conn=require("../connection/db.js");
 //     })
 // }
 
-const fetchData=async (sql, cb)=>{ //cb stands for call back function
-    let result;
-   conn.query(sql,(err,res)=>{
-        if(err){
+// const fetchData=async (sql, cb)=>{ //cb stands for call back function
+//     let result;
+//    conn.query(sql,(err,res)=>{
+//         if(err){
+//             console.log(err);
+//         }
+//         else{
+//             // console.log("All rows",res);
+//             result=res;
+//             cb(null,result)
+//             return result;
+//         }
+//     })
+// }
+
+
+//Promises Used in Get Function
+const fetchData = async (sql) => {
+     let result;
+
+     return new Promise((resolve)=>{
+
+        conn.query(sql, (err, res) => {
+                    if (err) {
+                     return   console.log(err);
+                    }
+       // console.log("All rows",res);
+                    return resolve(res);
+    
+            })
+     })
+
+    }
+
+
+const insertData = (sqlQuery) => {
+    return conn.query(sqlQuery, (err, result) => {
+        if (err) {
             console.log(err);
         }
-        else{
-            // console.log("All rows",res);
-            result=res;
-            cb(null,result)
-            return result;
+        else {
+            console.log("rows inserted", result);
         }
     })
 }
 
-
-const insertData = (sqlQuery)=>{
-    return  conn.query(sqlQuery,(err,result)=>{
-        if(err){
+const deleteData = (sqlQuery) => {
+    return conn.query(sqlQuery, (err, results) => {
+        if (err) {
             console.log(err);
         }
-        else{
-            console.log("rows inserted",result);
+        else {
+            console.log("rows deleted", results);
         }
     })
 }
 
-const deleteData = (sqlQuery)=>{
-    return conn.query(sqlQuery,(err,results)=>{
-        if(err){
+const updateData = (sqlQuery) => {
+    return conn.query(sqlQuery, (err, results) => {
+        if (err) {
             console.log(err);
         }
-        else{
-            console.log("rows deleted",results);
+        else {
+            console.log("Rows updated ", results);
         }
     })
 }
 
-const updateData = (sqlQuery)=>{
-    return conn.query(sqlQuery,(err,results)=>{
-        if(err){
-            console.log(err);
-        }
-        else{
-            console.log("Rows updated ",results);
-        }
-    })
-}
-
-module.exports={
+module.exports = {
     fetchData,
     insertData,
     deleteData,
