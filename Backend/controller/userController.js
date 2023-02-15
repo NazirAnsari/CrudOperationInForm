@@ -15,6 +15,7 @@
 
 const {seviceFetchData,serviceInsertData,serviceUpdateData,serviceDeleteData}= require('../services/userServices.js');
 const path=require("path");
+const { constants } = require('buffer');
 
 
 //html and css file called
@@ -29,7 +30,7 @@ res.sendFile(path.join(__dirname,"..",".." ,'/Frontend/index.html'));
 //     return seviceFetchData();
 // }
 
-// before promises
+// before promises 
 // const fetchData=(req,res)=>{
 //     const result = seviceFetchData(function(err,result){
 //         return res.send(result);
@@ -39,16 +40,25 @@ res.sendFile(path.join(__dirname,"..",".." ,'/Frontend/index.html'));
 
 
 //using Promises
-const fetchData=(req,res)=>{
-    const result = seviceFetchData();
-    
-        result.then((data)=>{
-            console.log(data);
-        return res.send(data);
-        })
-        return result;
-    }
+// const fetchData=(req,res)=>{
+//     const result = seviceFetchData();
+
+//         result.then((data)=>{
+//             console.log(data);
+//         return res.send(data);
+//         })
+//         return result;
+//     }
    
+
+
+
+//using ajax await
+
+const fetchData= async (req,res)=>{
+const result = await seviceFetchData();
+res.send(result)
+}
 
 const insertData=(req,res)=>{
     const newUser=req.body;

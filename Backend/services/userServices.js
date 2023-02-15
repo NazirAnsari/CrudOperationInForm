@@ -20,23 +20,37 @@ const {fetchData,insertData,deleteData,updateData} =require("../repository/userd
 //     }
 
 
-const seviceFetchData= () =>{
+//using promises
+
+// const seviceFetchData= () =>{
    
-    // return repo.fetchDataf(sqlQuery);
-    // return fetchData(sqlQuery);
+//     // return repo.fetchDataf(sqlQuery);
+//     // return fetchData(sqlQuery);
 
-    return new Promise((resolve)=>{
-        const sqlQuery='SELECT *from iwell_form';
-    const result= fetchData(sqlQuery);
-        // console.log(res);
-       result.then((data)=>{
-        // console.log(data);
-          resolve(data);
-       })
-    })
+//     return new Promise((resolve)=>{
+//         const sqlQuery='SELECT *from iwell_form';
+//     const result= fetchData(sqlQuery);
+//         // console.log(res);
+//        result.then((data)=>{
+//         // console.log(data);
+//           resolve(data);
+//        })
+//     })
 
-}
+// }
 
+
+//using async await
+const seviceFetchData=async () =>{
+   
+    const sqlQuery='SELECT *from iwell_form';
+    const result= await fetchData(sqlQuery);
+            // console.log(res);
+            return new Promise(async (resolve)=>{
+                resolve(result);
+        })
+    
+    }
 
 
 

@@ -27,7 +27,20 @@ const conn = require("../connection/db.js");
 // }
 
 
+//async await in Function
+
+// const fetchData = async (sqlQuery)=>{
+
+//     conn.query(sqlQuery,(err,res)=>{
+//         if(err) 
+//         return console.log(err);
+
+//         return (res);
+//     })
+// }
+
 //Promises Used in Get Function
+
 const fetchData = async (sql) => {
      let result;
 
@@ -44,6 +57,8 @@ const fetchData = async (sql) => {
      })
 
     }
+
+
 
 
 const insertData = (sqlQuery) => {

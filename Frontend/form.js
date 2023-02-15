@@ -176,15 +176,20 @@ console.log(count);
     if (userName.length < 7) {
         setError("yourName", "*length is short");
         console.log("validation name");
+        return false;
+
     }
-    if (userEmail.indexOf('@') <= 0) {
+    if (userEmail.indexOf('@') == 0) {
         setError("yourEmail", " *dont put @ in starting point")
+        return false;
     }
     else if (userEmail.search(/[@]/) == -1) {
         setError("yourEmail", "* @ is missing here");
+        return false;
     }
     else if (userEmail.charAt(userEmail.length - 4) != '.' && userEmail.charAt(userEmail.length - 4) != '.') {
         setError("yourEmail", "* . is not at a correct position");
+        return false;
     }
 
     
@@ -243,7 +248,8 @@ console.log(count);
 // ajax for delete data
 
 var deleteData=document.getElementById('deleteData');
-deleteData.addEventListener('click',()=>{
+deleteData.addEventListener('click',(e)=>{
+    e.preventDefault();
     const id=delbtnValue.value;
     console.log(id,'del btn value');
     deleteUser(id);
