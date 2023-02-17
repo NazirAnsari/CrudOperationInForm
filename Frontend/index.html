@@ -12,61 +12,65 @@
 </head>
 
 <body>
-    <header>
-        <img src="investwell-logo.jpg" alt="iMAGE" style="height: 50px;">
-        <btn>
-            <div class="inlineC">
-                <button>Home</button>
-            </div>
-            <div class="inlineC">
-                <button>Contact Us</button>
-            </div>
-            <div class="inlineC">
-                <button>About Us</button>
-            </div>
-
-            <div class="inlineC">
-                <button id="signIn">Login </button>
-                <button id="reg">Sign Up</button>
-                <button id="del">Delete</button>
-                <button id="update">Update</button>
-            </div>
-        </btn>
-
+    <header style="background-color: grey ;">
+        <div class="inlineC">
+            <img src="investwell-logo.jpg" alt="iMAGE" style="height: 50px; float: left;">
+            <button onclick="location.reload()">Home</button>
+            <button id="signIn" class="buttondown">Login </button>
+            <button id="reg" class="buttondown">Sign Up</button>
+            <!-- <button id="del" class="buttondown" style="display: none;">Delete</button> -->
+            <!-- <button id="update" class="buttondown">Update</button> -->
+            <button type="showData" id="showdata" class="buttondown">show Data</button>
+        </div>
         </div>
     </header>
 
     <!-- signup page -->
     <div class="container" id="registration-form">
         <h1>Registration Form</h1>
-        <form action="" class="formStyle" onsubmit="submitForm()" name="my-form" method="post
-        ">
-            <div class="divStyle" id="yourName"><label for="name">
-                    <input type="text" name="name" placeholder="Enter your Name" required> <b><span
+        <form action="" class="formStyle" onsubmit="submitForm()" name="my-form">
+            <div class="divStyle" id="yourFirstName"><label for="first_name">
+                    <input type="text" name="first_name" placeholder="Enter your first Name" required> <b><span
                             class="Eroor"></span> </b>
                 </label></div>
+
+            <div class="divStyle" id="yourLastName"><label for="last_name">
+                    <input type="text" name="last_name" placeholder="Enter your last Name" required> <b><span
+                            class="Eroor"></span> </b>
+                </label></div>
+
             <div class="divStyle" id="yourEmail"><label for="email">
                     <input type="email" name="email" placeholder="Enter your Email" required><b><span
                             class="Eroor"></span> </b>
                 </label></div>
 
+                <div class="divStyle" id="userName"><label for="user_name">
+                    <input type="text" name="user_name" placeholder="Enter your user Name" required> <b><span
+                            class="Eroor"></span> </b>
+                </label></div>
+
+                <div class="divStyle" id="phone"><label for="phoneNo">
+                    <input type="text" name="phoneNo" placeholder="Enter your mobile No." required> <b><span
+                            class="Eroor"></span> </b>
+                </label></div>
+
             <div class="divStyle" id="yourPassword">
                 <label for="password">
-                    <input type="password" name="password" placeholder="Enter your password" required><b><span
-                            class="Eroor"></span> </b>
+                    <input type="password" name="password" placeholder="Enter your password" autocomplete="on"
+                        required><b><span class="Eroor"></span> </b>
                 </label>
             </div>
 
             <div class="divStyle" id="yourCpassword">
                 <label for="cpassword">
-                    <input type="password" name="cpassword" placeholder="Enter once more your password"
-                        required><b><span class="Eroor"></span> </b>
+                    <input type="password" name="cpassword" placeholder="Confirm password" required
+                        autocomplete="on"><b><span class="Eroor"></span> </b>
                 </label>
             </div>
 
             <div class="divStyle">
                 <button type="signUp" id="signUp">signUp</button>
-                <button type="showData" id="showdata">show Data</button>
+
                 <!-- <button type="signUp" onclick="dataInsert();">signUp</button> -->
 
             </div>
@@ -76,22 +80,22 @@
 
     <!-- delete Form -->
 
-    <div class="deleteForm" style="display: none;">
+    <!-- <div class="deleteForm" style="display: none;">
         <form>
             <input type="text" id="deleteId" placeholder="Which ID you want to delete">
             <button style="margin-top: 15px;" type="deleteDAta" id="deleteData">Delete Button</button>
         </form>
-    </div>
+    </div> -->
     <!-- loginpage -->
-    <div class="container" id="myblock" style="display:none">
-        <form  action="" class="formStyle" onsubmit="submitForm()" name="my-form"
-            method="post">
+    <div class="container2" id="myblock" style="display:none">
+        <form action="" class="formStyle" name="my-form">
             <div class="divStyle"><label for="name">
-                    <input type="text" name="name" id="getName" placeholder="Enter your Name" required>
+                    <input type="email" name="email" id="getEmail" placeholder="Enter your Mail" required>
                 </label></div>
             <div class="divStyle">
                 <label for="password">
-                    <input type="password" name="password" placeholder="Enter your password" required>
+                    <input type="password" name="password" id="getPass" placeholder="Enter your password" required
+                        autocomplete="on">
                 </label>
             </div>
 
@@ -105,14 +109,32 @@
     <div class="classUpdate" id="updateForm" style="display: none;">
         <h1>Update Form</h1>
         <form action="" class="formStyle" onsubmit="updateFormCall()" name="my-update-form" method="post">
+           
             <div class="divStyle" id="yourId"> <label for="id">
-                <input type="number" name="id" id="newId" placeholder="Enter your Id" required>
-            </label></div>
-            <div class="divStyle" id="yourName"><label for="name">
-                    <input type="text" name="name" id="newName" placeholder="Enter your Name" required>
+                    <input type="number" name="id" id="newId" placeholder="Enter your Id" required>
                 </label></div>
+
+            <div class="divStyle" id="yourFirstName"><label for="name">
+                    <input type="text" name="name" id="newFirstName" placeholder="Enter your Name" required>
+                </label></div>
+
+                <div class="divStyle" id="yourLastName"><label for="last_name">
+                    <input type="text" name="last_name" id="newLastName" placeholder="Enter your last Name" required> <b><span
+                            class="Eroor"></span> </b>
+                </label></div>
+
             <div class="divStyle" id="yourEmail"><label for="email">
                     <input type="email" name="email" id="newEmail" placeholder="Enter your Email" required>
+                </label></div>
+
+                <div class="divStyle" id="userName"><label for="user_name">
+                    <input type="text" name="user_name" id="newUserName" placeholder="Enter your user Name" required> <b><span
+                            class="Eroor"></span> </b>
+                </label></div>
+
+                <div class="divStyle" id="phone"><label for="phoneNo">
+                    <input type="text" name="phoneNo" id="newPhoneNo" placeholder="Enter your mobile No." required> <b><span
+                            class="Eroor"></span> </b>
                 </label></div>
 
             <div class="divStyle" id="yourPassword">
@@ -136,7 +158,25 @@
     </div>
 
 
-<table class="myTable"></table>
+    <table class="myTable" style="display: none;"></table>
+    <div>
+        <table id="loginTable" style="margin: auto; display: none;">
+        </table>
+        <div class="divStyle">
+            <center><button id="del" class="buttondown" style="display: none;">Delete</button>
+            <button id="update" class="buttondown" style="display: none;">Update</button>
+            <button id="logOut" class="buttondown" style="display: none;" onclick="location.reload()">Log Out</button> </center>
+                </div>
+        <div class="deleteForm" style="display: none;">
+            <form>
+                <input type="text" id="deleteId" placeholder="For Security premises Enter your id number">
+                <button style="margin-top: 15px;" type="deleteDAta" id="deleteData">Delete Button</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- <div id="loginTable"></div> -->
+    <!-- <form id="afterlogin" ></form> -->
     <!-- <table border="2" style="margin-top:30vh ;">
         <tr>
             <th>Unique Id</th>

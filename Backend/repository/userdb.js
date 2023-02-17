@@ -94,9 +94,22 @@ const updateData = (sqlQuery) => {
     })
 }
 
+const loginData =async(sqlQuery)=>{
+    return new Promise((resolve)=>{
+        conn.query(sqlQuery, (err, res) => {
+            if (err) {
+             return   console.log(err);
+            }
+            return resolve(res);
+
+    })
+    })
+}
+
 module.exports = {
     fetchData,
     insertData,
     deleteData,
-    updateData
+    updateData,
+    loginData
 }

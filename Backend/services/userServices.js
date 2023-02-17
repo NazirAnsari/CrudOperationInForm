@@ -1,6 +1,12 @@
 // const repo=require("../repository/userdb.js");
 
-const {fetchData,insertData,deleteData,updateData} =require("../repository/userdb.js");
+const {
+  fetchData,
+  insertData,
+  deleteData,
+  updateData,
+  loginData,
+} = require("../repository/userdb.js");
 
 // const seviceFetchData= () =>{
 //     const sqlQuery='SELECT *from iwell_form';
@@ -19,11 +25,10 @@ const {fetchData,insertData,deleteData,updateData} =require("../repository/userd
 //         })
 //     }
 
-
 //using promises
 
 // const seviceFetchData= () =>{
-   
+
 //     // return repo.fetchDataf(sqlQuery);
 //     // return fetchData(sqlQuery);
 
@@ -39,56 +44,67 @@ const {fetchData,insertData,deleteData,updateData} =require("../repository/userd
 
 // }
 
-
 //using async await
-const seviceFetchData=async () =>{
-   
-    const sqlQuery='SELECT *from iwell_form';
-    const result= await fetchData(sqlQuery);
-            // console.log(res);
-            return new Promise(async (resolve)=>{
-                resolve(result);
-        })
-    
-    }
+const seviceFetchData = async () => {
+  const sqlQuery = "SELECT *from iwell_form";
+  const result = await fetchData(sqlQuery);
 
+  return new Promise(async (resolve) => {
+    resolve(result);
+  });
+};
 
+const serviceInsertData = (newUser) => {
+  console.log("serviceInsertDATA");
+  const subQuery = `INSERT into iwell_form(first_name,last_name,email,
+        username,phone_no,password,cpassword) values
+    ("${newUser.firstName}","${newUser.lastName}","${newUser.userEmail}",
+    "${newUser.userName}","${newUser.phoneNo}","${newUser.userPass}",
+    "${newUser.cUserPass}")`;
 
+  // conn.query(subQuery, function(err,result){
+  //         if(err){
+  //             return console.log(err);
+  //         }
+  // console.log("Records inserted: "+result.affectedRows)
+  return insertData(subQuery);
+  //  })
+};
 
-const serviceInsertData = (newUser) =>{
-    console.log("serviceInsertDATA");
-    const subQuery=`INSERT into iwell_form(name,email,password,cpassword) values("${newUser.userName}","${newUser.userEmail}","${newUser.userPass}","${newUser.cUserPass}")`;
-
-    // conn.query(subQuery, function(err,result){
-    //         if(err){
-    //             return console.log(err);
-    //         }
-            // console.log("Records inserted: "+result.affectedRows)
-            return insertData(subQuery);
-    //  })
-}
-
-const serviceUpdateData=(updateUser)=>{
-    console.log("services user update data ",updateUser.userName);
-    const sqlQuery= `UPDATE iwell_form set name = "${updateUser.userName}",
+const serviceUpdateData = (updateUser) => {
+  console.log("services user update data ", updateUser.userName);
+  const sqlQuery = `UPDATE iwell_form set first_name = "${updateUser.userFirsName}",
+   last_name = "${updateUser.userLastName}",
     email ="${updateUser.userEmail}",
+    username = "${updateUser.userName}",
+    phone_no = "${updateUser.userPhone}",
     password ="${updateUser.userPass}",
     cpassword ="${updateUser.cUserPass}" where Personid="${updateUser.id}"`;
-    //const query=`update iwell_form set name=${userData.name}  where id=${id}`
-    return updateData(sqlQuery);
-}
+  //const query=`update iwell_form set name=${userData.name}  where id=${id}`
+  return updateData(sqlQuery);
+};
 
-const serviceDeleteData =(id)=>{
-    console.log(`userService deleted ${id}`)
-    const subQuery=`delete from iwell_form where Personid= ${id}`;
-    console.log(subQuery);
-    return deleteData(subQuery);
-}
+const serviceDeleteData = (id) => {
+  console.log(`userService deleted ${id}`);
+  const subQuery = `delete from iwell_form where Personid= ${id}`;
+  console.log(subQuery);
+  return deleteData(subQuery);
+};
 
+const serviceLoginUser = async (details) => {
+  var email = details.loginEmail;
+  const query = `select * from iwell_form where email ="${email}" and password ="${details.loginPass}"`;
+  const result = await loginData(query);
 
-module.exports={
-    seviceFetchData,
-    serviceInsertData ,
-    serviceUpdateData,
-    serviceDeleteData
-}
+  return new Promise((resolve) => {
+    resolve(result);
+  });
+};
+
+module.exports = {
+  seviceFetchData,
+  serviceInsertData,
+  serviceUpdateData,
+  serviceDeleteData,
+  serviceLoginUser,
+};

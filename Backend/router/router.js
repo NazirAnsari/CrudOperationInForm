@@ -10,7 +10,7 @@ const router = express.Router();
 // router.use(bodyParser.json());
 // router.use(bodyParser.urlencoded({ extended:true }));
 
-const {showForm,fetchData,insertData,updateData,deleteData}=require("../controller/userController.js")
+const {showForm,fetchData,insertData,updateData,deleteData,loginuser}=require("../controller/userController.js")
 
 router.get('/',showForm); //rendering Html
 
@@ -21,6 +21,8 @@ router.post('/addUser',insertData); //Inserting new user
 router.post('/user/update',updateData);
 
 router.post('/user/delete',deleteData);
+
+router.post('/login',loginuser)
 
 module.exports=router;
 
