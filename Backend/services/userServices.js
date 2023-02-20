@@ -1,12 +1,6 @@
 // const repo=require("../repository/userdb.js");
 
-const {
-  fetchData,
-  insertData,
-  deleteData,
-  updateData,
-  loginData,
-} = require("../repository/userdb.js");
+const { fetchData,insertData,deleteData,updateData,loginData} = require("../repository/userdb.js");
 
 // const seviceFetchData= () =>{
 //     const sqlQuery='SELECT *from iwell_form';

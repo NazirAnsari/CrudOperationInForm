@@ -72,6 +72,20 @@ const insertData = (sqlQuery) => {
     })
 }
 
+// const insertData = async (sqlQuery) => {
+    
+//     return new Promise((resolve)=>{
+//      conn.query(sqlQuery, (err, result) => {
+//         if (err) {
+//             console.log(err);
+//         }
+//         else {
+//             console.log("rows inserted", result);
+//         }
+//     })
+//     })
+// }
+
 const deleteData = (sqlQuery) => {
     return conn.query(sqlQuery, (err, results) => {
         if (err) {

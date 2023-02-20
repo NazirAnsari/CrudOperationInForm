@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const conn = require("./Backend/connection/db.js");
+// const conn = require("./Backend/connection/db.js");
 const router = require("./Backend/router/router.js");
 const path = require("path");
 var bodyParser = require("body-parser");

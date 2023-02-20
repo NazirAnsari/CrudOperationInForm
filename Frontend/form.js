@@ -204,7 +204,7 @@ buttons.addEventListener("click", function (event) {
     setError("yourFirstName", "*minimum length should be 3 digit");
     return false;
   }
-  else if (userName.search(/[0-9]/) == -1){
+  else if (userName.search(/[0-9]/) == 1){
     setError("yourFirstName", "* digit not required in name");
     return false;
   }
@@ -238,7 +238,7 @@ buttons.addEventListener("click", function (event) {
 
 
   var obj = {
-    userId: count,
+    // userId: count,
     firstName: firstName,
     lastName: lastName,
     userEmail: userEmail,
@@ -354,6 +354,9 @@ function data_insertThroughApi(user) {
     type: "POST",
     data: user,
     success: function (result) {
+      // if(typeof result =="string"){
+      //   alert(result);
+      // }
       console.log(result);
     },
     error: function (error) {

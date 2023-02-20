@@ -12,17 +12,19 @@ const router = express.Router();
 
 const {showForm,fetchData,insertData,updateData,deleteData,loginuser}=require("../controller/userController.js")
 
+const{signUpValidate,loginValidate,deleteValidate,updateValidate}=require("../validation/validation.js")
+
 router.get('/',showForm); //rendering Html
 
 router.get('/users',fetchData); //fetching the whole data
 
-router.post('/addUser',insertData); //Inserting new user
+router.post('/addUser',signUpValidate,insertData); //Inserting new user
 
-router.post('/user/update',updateData);
+router.post('/user/update',updateValidate,updateData);
 
-router.post('/user/delete',deleteData);
+router.post('/user/delete',deleteValidate,deleteData);
 
-router.post('/login',loginuser)
+router.post('/login',loginValidate,loginuser)
 
 module.exports=router;
 
