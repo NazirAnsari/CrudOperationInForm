@@ -70,12 +70,13 @@ const serviceInsertData = (newUser) => {
 
 const serviceUpdateData = (updateUser) => {
   console.log("services user update data ", updateUser.userName);
+  var ciphertext = CryptoJS.AES.encrypt(updateUser.userPass, 'secret key 123').toString();
+  console.log(updateUser.id);
   const sqlQuery = `UPDATE iwell_form set first_name = "${updateUser.userFirsName}",
    last_name = "${updateUser.userLastName}",
-    email ="${updateUser.userEmail}",
     username = "${updateUser.userName}",
     phone_no = "${updateUser.userPhone}",
-    password ="${updateUser.userPass}",
+    password ="${ciphertext}",
     cpassword ="${updateUser.cUserPass}" where Personid="${updateUser.id}"`;
   //const query=`update iwell_form set name=${userData.name}  where id=${id}`
   return updateData(sqlQuery);

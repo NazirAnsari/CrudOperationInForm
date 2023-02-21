@@ -87,7 +87,7 @@ const updateSchema=Joi.object({
    
   userLastName: Joi.string().min(3).max(30).required(),
 
-  userEmail: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }),
+  // userEmail: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }),
 
   userName: Joi.string().alphanum().required(),
 

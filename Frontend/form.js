@@ -161,7 +161,7 @@ function setError(id, msg) {
 //updated value
 buttonUpdate.addEventListener("click", (event) => {
   event.preventDefault();
-  // var id = document.getElementById("newId").value;
+  var id = global.Person_id;
 
   var userFirsName = document.getElementById("newFirstName").value;
   var userLastName = document.getElementById("newLastName").value;
@@ -176,7 +176,6 @@ buttonUpdate.addEventListener("click", (event) => {
     id: id,
     userFirsName: userFirsName,
     userLastName : userLastName,
-    userEmail: userEmail,
     userName : userName,
     userPhone : userPhone,
     userPass: userPass,
