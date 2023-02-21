@@ -16,6 +16,8 @@
 const {seviceFetchData,serviceInsertData,serviceUpdateData,serviceDeleteData,serviceLoginUser}= require('../services/userServices.js');
 const path=require("path");
 const { constants } = require('buffer');
+var CryptoJS = require("crypto-js");
+
 
 
 //html and css file called
@@ -83,13 +85,25 @@ const deleteData =(req,res) =>{
 
 const loginuser = async (req,res)=>{
     const details=req.body;
-    // console.log('hiiiiiiiiiiiii',details.loignPass);
+    // console.log('hiiiiiiiiiiiii',details.loginPass);
 
     const result= await serviceLoginUser(details);
     // console.log('hiiiiiiiiiiiii',result[0].email);
+    if(result.length == 0){
+        return res.send("Invalid!!");
+    }
+    //console.log("hii",result);
+ 
+    // var bytes  = CryptoJS.AES.decrypt(result[0].password, 'secret key 123');
+    // //console.log(bytes,'userlogin')
+    // var originalText = bytes.toString(CryptoJS.enc.Utf8);
 
-    if(result.length==0){
-        res.send("incorrect credentail");
+    var decrypt= CryptoJS.AES.decrypt(result[0].password,"secret key 123");
+    var originalText=decrypt.toString(CryptoJS.enc.Utf8);
+    console.log(originalText);
+    if(originalText != details.loginPass)
+    {
+        return res.send("Invalid Credentials!!");
     }
 
     else{
@@ -108,6 +122,7 @@ const loginuser = async (req,res)=>{
     // }
 
     let sendData ={
+        Person_id: result[0].Personid,
         first_name :result[0].first_name,
         last_name : result[0].last_name,
         email :result[0].email,

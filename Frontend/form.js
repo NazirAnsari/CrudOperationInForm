@@ -1,3 +1,4 @@
+var global;
 var buttons = document.getElementById("signUp");
 var buttonUpdate = document.getElementById("updatebtn"); //click btn to update values
 
@@ -36,6 +37,7 @@ hDel.addEventListener("click", (event) => {
   document.getElementById("del").style.display="none";
   document.getElementById('update').style.display="none";
   document.getElementById('logOut').style.display="none";
+  document.getElementById('deleteId').value=global.Person_id;
 
 });
 
@@ -50,6 +52,9 @@ hUpdate.addEventListener("click", (event) => {
   document.getElementById("del").style.display="none";
   document.getElementById('update').style.display="none";
   document.getElementById('logOut').style.display="none";
+
+  document.getElementById("newEmail").value=global.email;
+  document.getElementById("newId").value=global.Person_id;
 
 });
 hReg.addEventListener("click", function (event) {
@@ -125,8 +130,8 @@ loginAuth.addEventListener("click", function (event) {
 
   loginAjax(obj);
 
-  loginEmail.value="";
-  loginPass.value="";
+  loginEmail.value=" ";
+  loginPass.value=" ";
 });
 
 // function Validit(userName){
@@ -156,11 +161,11 @@ function setError(id, msg) {
 //updated value
 buttonUpdate.addEventListener("click", (event) => {
   event.preventDefault();
-  var id = document.getElementById("newId").value;
+  // var id = document.getElementById("newId").value;
 
   var userFirsName = document.getElementById("newFirstName").value;
   var userLastName = document.getElementById("newLastName").value;
-  var userEmail = document.getElementById("newEmail").value;
+  // document.getElementById("newEmail").value=global;
   var userName = document.getElementById("newUserName").value;
   var userPhone = document.getElementById("newPhoneNo").value;
   var userPass = document.getElementById("newPass").value;
@@ -337,6 +342,7 @@ function ajaxUpdate(updatedUser) {
     data: updatedUser,
     success: function (result) {
       console.log(result);
+     
     },
 
     error: function (error) {
@@ -431,10 +437,12 @@ function loginAjax(user) {
     type: "POST",
     data: user,
     success: function (result) {
-      console.log("ajax", result);
-      console.log(typeof result);
-      console.log(result.length);
+      // console.log("ajax", result);
+      // console.log(typeof result);
+      // console.log(result.length);
       // console.log('ajax2',result.password);  //controller se password bheja hi nhi 
+      global=result;
+      console.log('global',result.Person_id);
       if (typeof result === "string") {
         alert(result);
       } else {

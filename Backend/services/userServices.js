@@ -1,6 +1,7 @@
 // const repo=require("../repository/userdb.js");
 
 const { fetchData,insertData,deleteData,updateData,loginData} = require("../repository/userdb.js");
+var CryptoJS = require("crypto-js");
 
 // const seviceFetchData= () =>{
 //     const sqlQuery='SELECT *from iwell_form';
@@ -49,11 +50,13 @@ const seviceFetchData = async () => {
 };
 
 const serviceInsertData = (newUser) => {
+  var ciphertext = CryptoJS.AES.encrypt(newUser.userPass, 'secret key 123').toString();
+  
   console.log("serviceInsertDATA");
   const subQuery = `INSERT into iwell_form(first_name,last_name,email,
         username,phone_no,password,cpassword) values
     ("${newUser.firstName}","${newUser.lastName}","${newUser.userEmail}",
-    "${newUser.userName}","${newUser.phoneNo}","${newUser.userPass}",
+    "${newUser.userName}","${newUser.phoneNo}","${ciphertext}",
     "${newUser.cUserPass}")`;
 
   // conn.query(subQuery, function(err,result){
@@ -87,9 +90,8 @@ const serviceDeleteData = (id) => {
 
 const serviceLoginUser = async (details) => {
   var email = details.loginEmail;
-  const query = `select * from iwell_form where email ="${email}" and password ="${details.loginPass}"`;
+  const query = `select * from iwell_form where email ="${email}"`;
   const result = await loginData(query);
-
   return new Promise((resolve) => {
     resolve(result);
   });
